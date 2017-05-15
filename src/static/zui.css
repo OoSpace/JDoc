@@ -1,0 +1,131 @@
+/*
+* @des: 常用样式汇总
+* @author: oospace@foxmail.com
+*/
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.flex {
+    display: flex;
+    display: -webkit-flex;
+}
+
+.flex1 {
+    flex: 1;
+    -webkit-flex: 1;
+}
+
+.flex2 {
+    flex: 2;
+    -webkit-flex: 2;
+}
+
+.flex3 {
+    flex: 3;
+    -webkit-flex: 3;
+}
+
+.flex4 {
+    flex: 4;
+    -webkit-flex: 4;
+}
+
+.noselect {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.box {
+    display: -webkit-box;
+}
+
+/*0.5px上边框*/
+.brd-t {
+    position: relative;
+}
+
+/*0.5px上边框*/
+.brd-t:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 200%;
+    border-top: 1px solid #dcdcdc;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(0.5, 0.5);
+    -ms-transform: scale(0.5, 0.5);
+    -o-transform: scale(0.5, 0.5);
+    transform: scale(0.5, 0.5);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*0.5px下边框*/
+.brd-b {
+    position: relative;
+}
+
+/*0.5px下边框*/
+.brd-b:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 200%;
+    border-bottom: 1px solid #dcdcdc;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(0.5, 0.5);
+    -ms-transform: scale(0.5, 0.5);
+    -o-transform: scale(0.5, 0.5);
+    transform: scale(0.5, 0.5);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.brd-t-b {
+    position: relative;
+}
+
+/*0.5px上下边框*/
+.brd-t-b:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 200%;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scale(0.5, 0.5);
+    -ms-transform: scale(0.5, 0.5);
+    -o-transform: scale(0.5, 0.5);
+    transform: scale(0.5, 0.5);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
