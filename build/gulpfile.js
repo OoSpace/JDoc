@@ -25,9 +25,9 @@ gulp.task('serve', ['css',"html","js","images"], function() {
     });
     gulp.watch("../src/**/*.css", ['css']);
     gulp.watch("../src/**/*.html", ['html']);
-    gulp.watch("../src/**/js/*.js", ['js']);
+    gulp.watch("../src/**/*.js", ['js']);
     gulp.watch("../src/**/*.*", ['images']);
-    gulp.watch("../*.html").on('change', browserSync.reload);
+    gulp.watch("../src/**/*.html").on('change', browserSync.reload);
 });
 
 // 编译压缩css 输出到目标目录

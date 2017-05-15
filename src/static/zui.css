@@ -20,6 +20,7 @@ li {
 .flex1 {
     flex: 1;
     -webkit-flex: 1;
+    text-align: center;
 }
 
 .flex2 {
