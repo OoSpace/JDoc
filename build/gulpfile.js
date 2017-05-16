@@ -67,9 +67,9 @@ gulp.task('css', function () {
 // 编译压缩js 输出到目标目录
 gulp.task('js', function () {
     gulp.src([developPath + '**/*.js', buildPath + '**/*.js'])
-        .pipe(babel({
+        /*.pipe(babel({
             presets: ['es2015']
-        }))
+        }))*/
         .pipe(uglify({
             mangle: true, //fasle不混淆变量名 true为混淆
             preserveComments: 'some' //不删除注释，还可以为 false（删除全部注释），some（保留@preserve @license @cc_on等注释）
