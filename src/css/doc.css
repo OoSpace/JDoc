@@ -1,0 +1,21 @@
+@charset "UTF-8";
+.doc{
+    width:100vw;
+    height: 100vh;
+    margin: auto;
+    line-height: 100%;
+    background: rgba(66,66,66,0.8);
+    color: #fff;
+}
+.bk-orange{
+    background-color: orange;
+    line-height: 50vh;
+}
+.bk-blue{
+    background-color: deepskyblue;
+    line-height: 50vh;
+}
+.bk-green{
+    background-color: lawngreen;
+    line-height: 100vh;
+}

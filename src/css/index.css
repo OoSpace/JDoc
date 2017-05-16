@@ -1,8 +1,11 @@
 @charset "UTF-8";
+*{
+    font-family: Arial;
+}
 .index {
     height: 100vh;
     line-height: 100vh;
-    background: rgba(11, 123, 123, 0.5);
+    background: rgba(66,66,66,0.8);
     color: #fff;
 }
 
@@ -10,7 +13,7 @@
     width: 40px;
     height: 40px;
     display: inline-block;
-    margin: auto;
-    border-radius: 100%;
-    border: 1px solid red;
+    border-radius: 3px;
+    border: 1px solid orange;
+    margin-bottom: -16px;
 }
