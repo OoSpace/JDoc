@@ -15,6 +15,7 @@ var babel = require('gulp-babel');// 编译ES6语法
 var uglify = require('gulp-uglify');// 压缩js
 var fs = require('fs');
 var del = require('del');
+var promise = require('promise');
 var imagemin = require('gulp-imagemin');// 压缩图片
 var contentIncluder = require('gulp-content-includer');//通过includer导入方式导入不同的模块
 var cache = require('gulp-cache');//清除缓存
@@ -44,6 +45,16 @@ var readFileNameList=function (path) {
     console.log(result);
     return result;
 }
+//等待异步完成以后再调用
+/*var runAsync=function(){
+    var p = new Promise(function(resolve, reject){
+        //做一些异步操作
+        runSequence("clean",'css', "html", "js", "images");
+    });
+    return p;
+}*/
+
+
 // 编译压缩css 输出到目标目录
 gulp.task('css', function () {
     var processors = [
@@ -61,7 +72,7 @@ gulp.task('css', function () {
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(buildPath))
-        .pipe(browserSync.stream());
+        //.pipe(browserSync.stream());
 })
 
 // 编译压缩js 输出到目标目录
@@ -75,7 +86,7 @@ gulp.task('js', function () {
             preserveComments: 'some' //不删除注释，还可以为 false（删除全部注释），some（保留@preserve @license @cc_on等注释）
         }))
         .pipe(gulp.dest(buildPath))
-        .pipe(browserSync.stream());
+        //.pipe(browserSync.stream());
 });
 
 // 图片压缩  输出到目标目录
@@ -86,8 +97,8 @@ gulp.task('images', function () {
             interlaced: true,
             progressive: true
         })))
-        .pipe(gulp.dest('../dist/'))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest(buildPath))
+        //.pipe(browserSync.stream());
 });
 
 // 拷贝 html
@@ -98,7 +109,7 @@ gulp.task('html', function () {
      }))*/
         .pipe(rev())
         .pipe(gulp.dest(buildPath))
-        .pipe(browserSync.stream());
+        //.pipe(browserSync.stream());
 });
 gulp.task('clean', function () {
     var filePathList=readFileNameList(buildPath);
@@ -111,43 +122,19 @@ gulp.task('clean', function () {
 gulp.task('server', function () {
     browserSync.init({
         server: buildPath,
-        reloadDelay: 1000, //# 延迟刷新
-        //ui: false,
-        //YT 配置https
-        //https: true,
-        //port: '3000',
-        //startPath: "/dist/index.html",
     });
-    /*gulp.watch(developPath+"**!/!*.css", ['css']);
-     gulp.watch(developPath+"**!/!*.html", ['html']);
-     gulp.watch(developPath+"**!/!*.js", ['js']);
-     gulp.watch(developPath+"**!/!*.*", ['images']);*/
-    gulp.watch("build/**/*");
+
     gulp.watch(developPath + "**/*").on('change', function () {
-        runSequence(["clean",'css', "html", "js", "images"], function () {
-            browserSync.reload(buildPath);
+        runSequence('css', "html", "js", "images",function(){
+            setTimeout(function () {
+                browserSync.reload(buildPath)
+            },1000)
         });
     });
 });
 
-/*gulp.task('watchTask', function () {
- runSequence('css',"html","js","images","server");
- return;
- });
- gulp.task('watch', ['watchTask'], function () {
- browserSync.reload(function () {
 
- });
- })
- gulp.task('watchListener', function(){
- var watcher = gulp.watch( '../dist/!**!/!*', ['watch']);
- watcher.on('change', function()  {
- runSequence('watch');
- })
- })*/
 //执行默认任务
-gulp.task('default', ['server'], function () {
-    runSequence("clean",'css', "html", "js", "images", function () {
-        browserSync.reload(buildPath);
-    });
+gulp.task('default', function () {
+    runSequence("clean",'css', "html", "js", "images","server");
  });
