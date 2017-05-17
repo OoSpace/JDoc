@@ -7,15 +7,16 @@ html, body {
     position: fixed;
     left:0;
     top:0;
+    user-select: none;
 }
 
 .doc {
+    position: relative;
     width: auto;
     height: 200px;
     line-height: 100%;
     background: rgba(111, 111, 111, 1);
     color: #fff;
-    min-width: 800px;
 }
 
 .flex, .flexH {
@@ -90,9 +91,10 @@ a {
 
 .swiper-wrapper {
     width: auto;
+    position: relative;
 }
 
 .swiper-slide {
     width: auto;
-    min-width:800px;
+    position: relative;
 }
