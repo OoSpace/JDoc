@@ -9,7 +9,7 @@
 </head>
 <body>
 <section class="toolBar window " focused="true">
-    <div class="window-title">工具箱</div>
+    <div class="window-title">工具栏</div>
     <div class="window-button">
         <div class="window-button-minimum"></div>
         <div class="window-button-maximum"></div>
@@ -30,23 +30,7 @@
             <div class="swiper-wrapper">
                 <!--<div class="swiper-slide">12</div>-->
                 <div class="swiper-slide">
-                    <h4 >标题</h4>
-                    <pre>
-                        (function () {
-                            var swiper = new Swiper('.swiper-container', {
-                                scrollbar: '.swiper-scrollbar',
-                                direction: 'vertical',
-                                //slidesPerView: 'auto',
-                                mousewheelControl: true,
-                                scrollbarHide : false,
-                                freeMode: true,
-                                //lazyLoading: true,
-                                scrollbarSnapOnRelease : false ,
-                                // updateOnImagesReady : true,
-
-                            });
-                        })()
-                    </pre>
+                    <h4 >程序员，你也配吃10元的盒饭</h4>
                     <p>又是一个阳光灿烂的中午，看了一上午的报纸，茶水也顺带喝了不少，肚子早已经咕咕作响了，今天中午吃点什么了，貌似楼下的新开张的盒饭还不错，于是我来到楼下准备买上一盒。<br>
                         菜色还不错，价格有6元，8元，10元，12元，20元的，像哥这样的精英管理人才，怎么着也的吃最高级的才配合身份，就在我准备购买时，一个响亮的声音响起。</p>
                     <p>"老板，给我一份10元的盒饭"。</p>
@@ -72,6 +56,22 @@
                     <p>
                         此处省略一万字.....
                     </p>
+                    <pre>
+                        (function () {
+                            var swiper = new Swiper('.swiper-container', {
+                                scrollbar: '.swiper-scrollbar',
+                                direction: 'vertical',
+                                //slidesPerView: 'auto',
+                                mousewheelControl: true,
+                                scrollbarHide : false,
+                                freeMode: true,
+                                //lazyLoading: true,
+                                scrollbarSnapOnRelease : false ,
+                                // updateOnImagesReady : true,
+
+                            });
+                        })()
+                    </pre>
                     <img src="imgs/logo.jpg"/>
                 </div>
             </div>
@@ -86,17 +86,20 @@
 <script src="js/swiper-3.4.2.min.js"></script>
 <script src="js/window_control.js"></script>
 <script type="text/javascript" >
+    (function () {
+        var swiper = new Swiper('.swiper-container', {
+            scrollbar: '.swiper-scrollbar',
+            direction: 'vertical',
+            slidesPerView: 'auto',
+            mousewheelControl: true,
+            scrollbarHide : false,
+            freeMode: true,
+            //lazyLoading: true,
+            scrollbarSnapOnRelease : false ,
+            // updateOnImagesReady : true,
+            roundLengths : true, //防止文字模糊
 
-    var swiper = new Swiper('.swiper-container', {
-        scrollbar: '.swiper-scrollbar',
-        direction: 'vertical',
-        slidesPerView: 'auto',
-        mousewheelControl: true,
-        scrollbarHide : false,
-        freeMode: true,
-        roundLengths : true, //防止文字模糊
-    });
-
-
+        });
+    })()
 </script>
 </html>
