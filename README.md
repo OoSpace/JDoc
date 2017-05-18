@@ -1,3 +1,3 @@
-# API
-# 文章
-# Others
+# cd build
+# npm install
+# gulp

@@ -1,8 +1,6 @@
 @charset "UTF-8";
 * {
     font-family: Arial;
-    user-select: text;
-    -webkit-user-select: text;
 }
 
 body, html {
@@ -11,7 +9,7 @@ body, html {
     font-size:14px;
 }
 
-.api {
+.write {
     height: 100vh;
     background: rgba(66, 66, 66, 0.8);
     color: #fff;
@@ -23,17 +21,13 @@ body, html {
     color: #fff;
 }
 
-.menu {
+.article {
     margin: 20px auto;
     width: 100%;
     background: rgba(66, 66, 66, 0.5);
     height: 400px;
     padding: 15px;
     color: #fff;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    border:1px solid #dedede;
-    border-radius:3px;
 }
 
 .swiper-container {
@@ -97,33 +91,15 @@ body, html {
     width: 100%;
     white-space: pre-line;
 }
-.preview .p_method{
-    background: rgba(66, 66, 66, 0.5);
-    color:#fff;
-}
-.preview .p_note{
-    line-height: 24px;
-    color:#666;
-}
+
 .toolBar {
     width: 600px;
     height: 80px;
     font-size: 12px;
-    right: 20px;
-    top: 20px;
+    left: 20px;
+    top: 500px;
 }
-.green{
-    color:green;
-}
-.red{
-    color:darkred;
-}
-.black{
-    color:#333;
-}
-._black{
-    color:#666;
-}
+
 .toolBar .window-title {
     color: #000000;
     text-shadow: 0 0 14px #fff;

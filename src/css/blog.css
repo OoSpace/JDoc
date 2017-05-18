@@ -1,8 +1,6 @@
 @charset "UTF-8";
 * {
     font-family: Arial;
-    user-select: text;
-    -webkit-user-select: text;
 }
 
 body, html {
@@ -11,9 +9,9 @@ body, html {
     font-size:14px;
 }
 
-.api {
+.blog {
     height: 100vh;
-    background: rgba(66, 66, 66, 0.8);
+    background: rgba(42, 81, 6, 0.8);
     color: #fff;
 }
 
@@ -30,10 +28,8 @@ body, html {
     height: 400px;
     padding: 15px;
     color: #fff;
+    border: 1px solid #dedede;
     box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    border:1px solid #dedede;
-    border-radius:3px;
 }
 
 .swiper-container {
@@ -97,14 +93,7 @@ body, html {
     width: 100%;
     white-space: pre-line;
 }
-.preview .p_method{
-    background: rgba(66, 66, 66, 0.5);
-    color:#fff;
-}
-.preview .p_note{
-    line-height: 24px;
-    color:#666;
-}
+
 .toolBar {
     width: 600px;
     height: 80px;
@@ -112,18 +101,7 @@ body, html {
     right: 20px;
     top: 20px;
 }
-.green{
-    color:green;
-}
-.red{
-    color:darkred;
-}
-.black{
-    color:#333;
-}
-._black{
-    color:#666;
-}
+
 .toolBar .window-title {
     color: #000000;
     text-shadow: 0 0 14px #fff;

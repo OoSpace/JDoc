@@ -127,7 +127,8 @@ gulp.task('server', function () {
     gulp.watch(developPath + "**/*").on('change', function () {
         runSequence('clean','css', "html", "js", "images",function(){
             setTimeout(function () {
-                browserSync.reload(buildPath)
+                browserSync.reload(buildPath);
+                console.log("reload complete at "+new Date().toString());
             },1000)
         });
     });
