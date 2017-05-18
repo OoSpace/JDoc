@@ -16,7 +16,7 @@
         <div class="window-button-close"></div>
     </div>
     <div class="window-content">
-        <label>写文档</label><label>写博客</label><label>保存</label>
+        <a class="focused">写文档</a><a>写文章</a><a>编辑</a><a>保存</a><a>预览</a><a>刷新</a><a>删除</a><a href="doc.html">主菜单</a><a href="index.html">首页</a>
     </div>
 </section>
 
@@ -194,9 +194,13 @@
             roundLengths : true, //防止文字模糊
             onSlideNextStart: function(){
                 swiper_preview.slideNext();
+                $(".toolBar a").removeClass("focused");
+                $(".toolBar a").eq(1).addClass("focused");
             },
             onSlidePrevStart: function(swiper){
                 swiper_preview.slidePrev();
+                $(".toolBar a").removeClass("focused");
+                $(".toolBar a").eq(0).addClass("focused");
             }
 
         });

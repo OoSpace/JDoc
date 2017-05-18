@@ -101,6 +101,25 @@ body, html {
     top: 500px;
     color:#fff;
 }
+.toolBar a{
+    display: inline-block;
+    padding:12px 12px;
+    font-size:14px;
+    /*background: rgba(66,166,66,0.6);*/
+    margin:0 6px -10px 0;
+    height: 38px;
+    line-height: 14px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border:1px solid #000000;
+    border-radius: 3px;
+}
+.focused{
+    border:1px solid orange !important;
+}
+.toolBar a:hover{
+    border:1px solid #fff;
+}
 
 .toolBar .window-title {
     color: #000000;
