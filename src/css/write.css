@@ -19,6 +19,7 @@ body, html {
     width: 100%;
     background: rgba(66, 66, 66, 0.5);
     color: #fff;
+    margin-bottom:10px;
 }
 
 .article {
@@ -98,6 +99,7 @@ body, html {
     font-size: 12px;
     left: 20px;
     top: 500px;
+    color:#fff;
 }
 
 .toolBar .window-title {
@@ -105,7 +107,26 @@ body, html {
     text-shadow: 0 0 14px #fff;
     user-select: none;
 }
-
+.preview .p_method{
+    background: rgba(66, 66, 66, 0.5);
+    color:#fff;
+}
+.preview .p_note{
+    line-height: 24px;
+    color:#666;
+}
+.green{
+    color:green;
+}
+.red{
+    color:darkred;
+}
+.black{
+    color:#333;
+}
+._black{
+    color:#666;
+}
 /*::-moz-selection{background:transparent; color:none;}*/
 /*::-webkit-selection{background:transparent; color:none;}*/
 /* ::-moz-selection{background:none; color:none;}  */
