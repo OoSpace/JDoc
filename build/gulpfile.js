@@ -63,14 +63,14 @@ gulp.task('css', function () {
         precss
     ];
     gulp.src([developPath + '**/*.css', buildPath + '**/*.css'])
-        .pipe(postcss(processors))
-        .pipe(autoprefixer({
+        /*.pipe(postcss(processors))*/
+        /*.pipe(autoprefixer({
             browsers: ['last 2 versions', 'Android >= 4.0'],
             cascade: true
-        }))
-        .pipe(minifycss())
+        }))*/
+        /*.pipe(minifycss())
         .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write())*/
         .pipe(gulp.dest(buildPath))
         //.pipe(browserSync.stream());
 })
@@ -81,10 +81,10 @@ gulp.task('js', function () {
         /*.pipe(babel({
             presets: ['es2015']
         }))*/
-        .pipe(uglify({
+        /*.pipe(uglify({
             mangle: true, //fasle不混淆变量名 true为混淆
             preserveComments: 'some' //不删除注释，还可以为 false（删除全部注释），some（保留@preserve @license @cc_on等注释）
-        }))
+        }))*/
         .pipe(gulp.dest(buildPath))
         //.pipe(browserSync.stream());
 });
@@ -92,11 +92,11 @@ gulp.task('js', function () {
 // 图片压缩  输出到目标目录
 gulp.task('images', function () {
     gulp.src([developPath + '**/*.*', buildPath + '**/*.*'])
-        .pipe(cache(imagemin({
+        /*.pipe(cache(imagemin({
             optimizationLevel: 3,
             interlaced: true,
             progressive: true
-        })))
+        })))*/
         .pipe(gulp.dest(buildPath))
         //.pipe(browserSync.stream());
 });
@@ -125,7 +125,7 @@ gulp.task('server', function () {
     });
 
     gulp.watch(developPath + "**/*").on('change', function () {
-        runSequence('css', "html", "js", "images",function(){
+        runSequence('clean','css', "html", "js", "images",function(){
             setTimeout(function () {
                 browserSync.reload(buildPath)
             },1000)
