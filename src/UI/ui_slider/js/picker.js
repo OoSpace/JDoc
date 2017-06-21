@@ -1,5 +1,5 @@
 /**
- * Created by oosapce on 2017/6/5.
+ * Created by oospace on 2017/6/5.
  */
 var picker = function (id, options) {
 
