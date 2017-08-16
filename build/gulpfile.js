@@ -84,6 +84,26 @@ gulp.task('css-dev', function () {
         .pipe(gulp.dest(buildPath + "css/"))
 })
 
+// 编译less,并压缩css输出到目标目录
+gulp.task('static', function () {
+    return gulp.src(developPath + "static/**")
+        .pipe(sourcemaps.init())
+        .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+        .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
+        .pipe(less())
+        .pipe(minifycss())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(buildPath + "static/"))
+})
+
+// 编译less,并压缩css输出到目标目录
+gulp.task('static-dev', function () {
+    return gulp.src(developPath + "static/**")
+        .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
+        .pipe(less())
+        .pipe(gulp.dest(buildPath + "static/"))
+})
+
 // 编译ES6到ES5,并压缩js 输出到目标目录
 gulp.task('js', function () {
     return gulp.src((developPath + 'js/**'))
@@ -185,22 +205,22 @@ gulp.task('server', function () {
         server: buildPath,
     });
     gulp.watch(developPath + "**/*").on('change', function () {
-        runSequence("clean", ["css-dev", "html-dev", "js-dev", "images-dev", "Edox-dev"], "reload");
+        runSequence("clean", ["css-dev","static-dev", "html-dev", "js-dev", "images-dev", "Edox-dev"], "reload");
     });
 });
 
 
 //本地开发执行默认任务
 gulp.task('default', function () {
-    runSequence("clean", ["css-dev", "html-dev", "js-dev", "images-dev", "Edox-dev"], "server");
+    runSequence("clean", ["css-dev","static-dev","html-dev", "js-dev", "images-dev", "Edox-dev"], "server");
 });
 
 //执行打包发布任务(不压缩)
 gulp.task('develop', function () {
-    runSequence("clean", ["css-dev", "html-dev", "js-dev", "images-dev", "Edox-dev"]);
+    runSequence("clean", ["css-dev","static-dev", "html-dev", "js-dev", "images-dev", "Edox-dev"]);
 });
 
 //执行打包发布任务
 gulp.task('product', function () {
-    runSequence("clean", ["html", "css", "js", "images", "Edox"]);
+    runSequence("clean", ["html", "css","static","js", "images", "Edox"]);
 });
