@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/JDoc.iml" filepath="$PROJECT_DIR$/.idea/JDoc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Edox.iml" filepath="$PROJECT_DIR$/.idea/Edox.iml" />
     </modules>
   </component>
 </project>
