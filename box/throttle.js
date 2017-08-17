@@ -36,6 +36,3 @@ const debouceExample = debouce(() => console.log(111), 1000);
 debouceExample();
 debouceExample();
 debouceExample();
-window.addEventListener("resize",function () {
-    
-})
