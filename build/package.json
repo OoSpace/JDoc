@@ -46,7 +46,12 @@
     "precss": "^1.4.0",
     "promise": "^7.1.1",
     "run-sequence": "^1.2.2",
-    "through2": "^2.0.3"
+    "through2": "^2.0.3",
+    "jshint-stylish": "^2.2.1",
+    "path": "^0.12.7",
+    "precss": "^1.4.0",
+    "promise": "^7.1.1",
+    "run-sequence": "^1.2.2"
   },
   "dependencies": {},
   "jshintConfig": {

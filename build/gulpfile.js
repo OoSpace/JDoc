@@ -44,6 +44,7 @@ var autoprefixer = require('autoprefixer');
 var developPath = "../src/";
 var buildPath = "../dist/";
 var clean = require('gulp-clean');
+
 var replace = require('gulp-replace');
 var through = require('through2');
 
@@ -91,6 +92,35 @@ gulp.task('css-dev', function () {
         .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
         .pipe(less())
         .pipe(gulp.dest(buildPath + "css/"))
+
+})
+
+// 编译less,并压缩css输出到目标目录
+gulp.task('css-dev', function () {
+    return gulp.src(developPath + "css/**")
+        .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
+        .pipe(less())
+        .pipe(gulp.dest(buildPath + "css/"))
+})
+
+// 编译less,并压缩css输出到目标目录
+gulp.task('static', function () {
+    return gulp.src(developPath + "static/**")
+        .pipe(sourcemaps.init())
+        .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+        .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
+        .pipe(less())
+        .pipe(minifycss())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(buildPath + "static/"))
+})
+
+// 编译less,并压缩css输出到目标目录
+gulp.task('static-dev', function () {
+    return gulp.src(developPath + "static/**")
+        .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
+        .pipe(less())
+        .pipe(gulp.dest(buildPath + "static/"))
 })
 
 // 编译ES6到ES5,并压缩js 输出到目标目录
@@ -109,6 +139,7 @@ gulp.task('js', function () {
             console.log(e);
         })
         .pipe(gulp.dest(buildPath + "js/"))
+
 });
 
 gulp.task('js-dev', function () {
@@ -132,21 +163,41 @@ gulp.task('html', function () {
         minifyCSS: true//压缩页面CSS
     };
     return gulp.src([developPath + '*.html'])
-        .pipe(through.obj(function (file, enc) {
+        .pipe(through.obj(function (file, enc, cb) {
             var name = rpath.basename(file.path);
-            htmlReplace("<!--_HEAD_CONTAINER_-->", "<link href=" + 'css/' + name.split(".")[0] + '.css' + ">");
+            name = "<link href='" + 'css/' + name.split(".")[0] + '.css' + "'>";
+            var content = file.contents.toString();
+            content = content.replace('<!--_HEAD_CONTAINER_-->', name);
+            file.contents = new Buffer(content);
+            this.push(file);
+            cb();
         }))
-        .pipe(through.obj(function (file, enc) {
+        .pipe(through.obj(function (file, enc, cb) {
             var name = rpath.basename(file.path);
-            htmlReplace("<!--_BODY_CONTAINER_-->", "");
+            name = "感谢使用Edox";
+            var content = file.contents.toString();
+            content = content.replace('<!--_BODY_CONTAINER_-->', name);
+            file.contents = new Buffer(content);
+            this.push(file);
+            cb();
         }))
-        .pipe(through.obj(function (file, enc) {
+        .pipe(through.obj(function (file, enc, cb) {
             var name = rpath.basename(file.path);
-            htmlReplace("<!--_FOOT_CONTAINER_-->", "<script src=" + 'js/' + name.split(".")[0] + '.js' + "></script>");
+            name = "<script src='" + 'js/' + name.split(".")[0] + '.js' + "'></script>";
+            var content = file.contents.toString();
+            content = content.replace('<!--_FOOT_CONTAINER_-->', name);
+            file.contents = new Buffer(content);
+            this.push(file);
+            cb();
         }))
-        .pipe(through.obj(function (file, enc) {
+        .pipe(through.obj(function (file, enc, cb) {
             var name = rpath.basename(file.path);
-            htmlReplace("<!--_OTHER_CONTAINER_-->", "<script src=" + 'js/' + name.split(".")[0] + '.js' + "></script>");
+            name = "<script src='" + 'js/' + name.split(".")[0] + '.js' + "'></script>";
+            var content = file.contents.toString();
+            content = content.replace('<!--_OTHER_CONTAINER_-->', name);
+            file.contents = new Buffer(content);
+            this.push(file);
+            cb();
         }))
         .pipe(htmlmin(options))
         .pipe(gulp.dest(buildPath))
@@ -160,26 +211,42 @@ function htmlReplace(str, name) {
 
 gulp.task('html-dev', function () {
     return gulp.src([developPath + '*.html'])
-    /* .pipe(replace("<!--_HEAD_CONTAINER_-->",through.obj(function(file,enc,cb){
-         var name = rpath.basename(file.path);
-         this.push(name.split(".")[0]);
-         htmlReplace("<!--_HEAD_CONTAINER_-->","<link href="+'css/'+name.split(".")[0]+'.css'+">");
-         cb();
-     })))*/
-        /*.pipe(through.obj(function (file, enc, cb) {
+        .pipe(through.obj(function (file, enc, cb) {
             var name = rpath.basename(file.path);
-            htmlReplace("<!--_BODY_CONTAINER_-->", file._contents);
+            name = "<link href='" + 'css/' + name.split(".")[0] + '.css' + "'>";
+            var content = file.contents.toString();
+            content = content.replace('<!--_HEAD_CONTAINER_-->', name);
+            file.contents = new Buffer(content);
             this.push(file);
             cb();
-        }))*/
-        /* .pipe(through.obj(function(file,enc){
-            var name = rpath.basename(file.path);
-            htmlReplace("<!--_FOOT_CONTAINER_-->","<script src="+'js/'+name.split(".")[0]+'.js'+"></script>");
         }))
-        .pipe(through.obj(function(file,enc){
+        .pipe(through.obj(function (file, enc, cb) {
             var name = rpath.basename(file.path);
-            htmlReplace("<!--_OTHER_CONTAINER_-->","<script src="+'js/'+name.split(".")[0]+'.js'+"></script>");
-        }))*/
+            name = "感谢使用Edox";
+            var content = file.contents.toString();
+            content = content.replace('<!--_BODY_CONTAINER_-->', name);
+            file.contents = new Buffer(content);
+            this.push(file);
+            cb();
+        }))
+        .pipe(through.obj(function (file, enc, cb) {
+            var name = rpath.basename(file.path);
+            name = "<script src='" + 'js/' + name.split(".")[0] + '.js' + "'></script>";
+            var content = file.contents.toString();
+            content = content.replace('<!--_FOOT_CONTAINER_-->', name);
+            file.contents = new Buffer(content);
+            this.push(file);
+            cb();
+        }))
+        .pipe(through.obj(function (file, enc, cb) {
+            var name = rpath.basename(file.path);
+            name = "<script src='" + 'js/' + name.split(".")[0] + '.js' + "'></script>";
+            var content = file.contents.toString();
+            content = content.replace('<!--_OTHER_CONTAINER_-->', name);
+            file.contents = new Buffer(content);
+            this.push(file);
+            cb();
+        }))
         .pipe(gulp.dest(buildPath))
 });
 
@@ -212,6 +279,46 @@ gulp.task('Edox', function () {
 // 框架依赖  输出到目标目录
 gulp.task('Edox-dev', function () {
     return gulp.src([developPath + 'Edox/**'])
+});
+
+gulp.task('js-dev', function () {
+    return gulp.src((developPath + 'js/**'))
+        .pipe(babel({
+            presets: [es2015]
+        }))
+        .pipe(gulp.dest(buildPath + "js/"))
+});
+
+
+// 图片压缩  输出到目标目录
+gulp.task('images', function () {
+    return gulp.src([developPath + 'imgs/*.*'])
+        .pipe(imagemin())
+        .pipe(gulp.dest(buildPath + "imgs/"))
+});
+
+// 图片压缩  输出到目标目录
+gulp.task('images-dev', function () {
+    return gulp.src([developPath + 'imgs/*.*'])
+        .pipe(gulp.dest(buildPath + "imgs/"))
+});
+
+// 框架依赖  输出到目标目录
+gulp.task('Edox', function () {
+    return gulp.src([developPath + 'Edox/*.js'])
+        .pipe(babel({
+            presets: [es2015]
+        }))
+        .pipe(jshint(".jshintrc"))
+        //.pipe(jshint.reporter("default"))
+        .pipe(jshint.reporter(stylish))
+        .pipe(uglify({mangle: false}))
+        .pipe(gulp.dest(buildPath + "Edox/"))
+});
+
+// 框架依赖  输出到目标目录
+gulp.task('Edox-dev', function () {
+    return gulp.src([developPath + 'Edox/*.js'])
         .pipe(babel({
             presets: [es2015]
         }))
@@ -255,3 +362,4 @@ gulp.task('develop', function () {
 gulp.task('product', function () {
     runSequence("clean", ["html", "css", "js", "images"]);
 });
+
